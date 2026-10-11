@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <nav>
+      <a href="{% url 'home'%}">Home</a>
+
+      {% if user.is_authenticated %}
+      <a href="{% url 'add_student'%}">Add student</a>
+      <a href="{% url 'student_list'%}">Student List</a>
+      <span>Welcome {{user.username}}</span>
+      <form method="post" action="{% url 'login' %}">
+        <input type="submit" value="logout" />
+        {% csrf_token %}
+      </form>
+
+      {% else %}
+      <a href="{% url 'register'%}">Register</a>
+      <a href="{% url 'login'%}">Login</a>
+      {% endif %}
+    </nav>
+    {% if messages %} {% for message in messages %}
+    <p>{{message}}</p>
+    {% endfor %} {% endif %}
+    <main>{% block content %} {% endblock%}</main>
+  </body>
+</html>

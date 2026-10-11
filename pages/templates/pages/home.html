@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+{% block content %}
+<h1>Welcome to School site</h1>
+<p>this is a simple school management web app </p>
+{% if user.is_authenticated %}
+<p> you are logged</p>
+<p> you can add students and view students record</p>
+{% endif %}
+{% endblock %}
